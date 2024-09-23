@@ -7,10 +7,6 @@ import Convert from './components/Convert'
 import Home from './components/Home'
 
 function App() {
-	const client = new currencyapi(
-		'cur_live_Yog7eTtDImmKNWMISDosfhAIplTlRFQvf1ECIIMh'
-	)
-
 	const containerRef = useRef(null)
 	useEffect(() => {
 		const handleMouseMove = e => {
@@ -55,7 +51,7 @@ function App() {
 				<main className='main--content'>
 					<Routes>
 						<Route path='/' element={<Home />} />
-						<Route path='/convert' element={<Convert api={client} />} />
+						<Route path='/convert' element={<Convert />} />
 					</Routes>
 				</main>
 			</div>

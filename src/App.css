@@ -76,9 +76,12 @@ main {
 	margin: auto;
 }
 .convert-window {
-	height: 600px;
+	height: 500px;
 	display: flex;
 	justify-content: space-around;
+}
+.full {
+	height: 650px;
 	background: transparent;
 	border: 2px solid rgba(253, 2, 136, 1);
 	border-radius: 15px;
@@ -93,7 +96,7 @@ main {
 	font-family: 'montserrat';
 	font-weight: 300;
 	background: transparent;
-	color: white;
+	color: black;
 }
 .convert--select {
 	padding: 20px;
@@ -112,4 +115,17 @@ main {
 .convert--select option:checked {
 	background-color: rgba(253, 2, 136, 1);
 	color: #fff;
+}
+.btnDiv {
+	height: 100px;
+	width: fit-content;
+	margin: 0 auto;
+}
+.btnDiv button {
+	font-size: 42px;
+	transition: border 300ms ease-in-out;
+	border: 2px solid rgba(253, 2, 136, 0.5);
+	padding: 15px 25px;
+	border-radius: 15px;
+	cursor: pointer;
 }

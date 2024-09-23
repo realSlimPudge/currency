@@ -1,38 +1,115 @@
-.App {
-  text-align: center;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Montserrat';
+	color: white;
+}
+header {
+	display: flex;
+	align-items: center;
+	width: 75%;
+	margin: 0 auto;
+	justify-content: space-between;
+	padding-top: 40px;
+}
+.nav a {
+	text-decoration: none;
+	color: rgb(173, 173, 173);
+	font-size: 20px;
+	transition: color 300ms ease-in-out;
+}
+.nav a:hover {
+	color: white;
+}
+.nav {
+	column-gap: 40px;
+	display: flex;
+	width: fit-content;
+}
+.example-link {
+	width: 20%;
+	text-align: end;
+}
+.logo {
+	width: 20%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.example-link a {
+	text-decoration: none;
+	color: rgb(173, 173, 173);
+	font-size: 20px;
+	transition: color 300ms ease-in-out, border 300ms ease-in-out;
+	border: 2px solid rgba(253, 2, 136, 0.5);
+	padding: 10px 10px;
+	border-radius: 15px;
+}
+.example-link a:hover {
+	color: white;
+	border: 2px solid rgba(253, 2, 136, 1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.homepage {
+	width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.title {
+	font-size: 64px;
+	font-weight: 500;
 }
-
-.App-link {
-  color: #61dafb;
+main {
+	width: 65%;
+	height: fit-content;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.first,
+.second {
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	height: fit-content;
+	margin: auto;
+}
+.convert-window {
+	height: 600px;
+	display: flex;
+	justify-content: space-around;
+	background: transparent;
+	border: 2px solid rgba(253, 2, 136, 1);
+	border-radius: 15px;
+}
+.convert--input {
+	width: 500px;
+	padding: 20px 15px;
+	border: none;
+	outline: none;
+	border-radius: 15px;
+	font-size: 124px;
+	font-family: 'montserrat';
+	font-weight: 300;
+	background: transparent;
+	color: white;
+}
+.convert--select {
+	padding: 20px;
+	border-radius: 15px;
+	width: 500px;
+	font-size: 32px;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+.convert--select option {
+	background-color: black;
+	color: white;
+	border-radius: 15px;
+}
+.convert--select option:checked {
+	background-color: rgba(253, 2, 136, 1);
+	color: #fff;
 }

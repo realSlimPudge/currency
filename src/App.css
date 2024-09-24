@@ -83,8 +83,40 @@ main {
 .full {
 	height: 650px;
 	background: transparent;
-	border: 2px solid rgba(253, 2, 136, 1);
+	border: 2px solid rgba(253, 2, 136, 0.5);
+	animation: neon 3s infinite ease-in-out;
 	border-radius: 15px;
+	background-color: rgba(255, 255, 255, 0.05); /* Полупрозрачный белый фон */
+	backdrop-filter: blur(10px);
+}
+@keyframes neon {
+	0% {
+		box-shadow: 5px 0px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	12.5% {
+		box-shadow: 2.5px 2.5px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	25% {
+		box-shadow: 0px 5px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	37.5% {
+		box-shadow: -2.5px 2.5px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	50% {
+		box-shadow: -5px 0px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	62.5% {
+		box-shadow: -2.5px -2.5px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	75% {
+		box-shadow: 0px -5px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	87.5% {
+		box-shadow: 2.5px -2.5px 5px 2px rgba(253, 2, 136, 0.2);
+	}
+	100% {
+		box-shadow: 5px 0px 5px 2px rgba(253, 2, 136, 0.2);
+	}
 }
 .convert--input {
 	width: 500px;
@@ -96,26 +128,17 @@ main {
 	font-family: 'montserrat';
 	font-weight: 300;
 	background: transparent;
-	color: black;
+	color: white;
+}
+.convert--input::-webkit-inner-spin-button,
+.convert--input::-webkit-outer-spin-button {
+	-webkit-appearance: none;
 }
 .convert--select {
-	padding: 20px;
-	border-radius: 15px;
 	width: 500px;
 	font-size: 32px;
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
 }
-.convert--select option {
-	background-color: black;
-	color: white;
-	border-radius: 15px;
-}
-.convert--select option:checked {
-	background-color: rgba(253, 2, 136, 1);
-	color: #fff;
-}
+
 .btnDiv {
 	height: 100px;
 	width: fit-content;
@@ -128,4 +151,33 @@ main {
 	padding: 15px 25px;
 	border-radius: 15px;
 	cursor: pointer;
+	font-family: 'Montserrat';
+	background: transparent;
+	color: white;
+	font-weight: 400;
+	transition: 300ms ease-in-out all;
+}
+.btnDiv button:hover {
+	box-shadow: 0px 0px 5px 2px rgba(253, 2, 136, 0.5);
+	scale: 1.02;
+}
+.errAnimation {
+	animation: shake 200ms ease-in-out;
+}
+@keyframes shake {
+	0% {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-5px);
+	}
+	50% {
+		transform: translateX(5px);
+	}
+	75% {
+		transform: translateX(-5px);
+	}
+	100% {
+		transform: translateX(0);
+	}
 }

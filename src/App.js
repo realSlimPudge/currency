@@ -20,7 +20,7 @@ function App() {
 
 			const gradient = `radial-gradient(
 		circle at ${x * 100}% ${y * 100}%,
-		rgba(122, 52, 89, 1) -50%,
+		rgba(122, 52, 89, 1) -55%,
 		rgba(5, 33, 42, 1) 35%,
 		rgba(9, 9, 9, 1) 100%
 	)`

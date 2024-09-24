@@ -86,8 +86,9 @@ main {
 	border: 2px solid rgba(253, 2, 136, 0.5);
 	animation: neon 3s infinite ease-in-out;
 	border-radius: 15px;
-	background-color: rgba(255, 255, 255, 0.05); /* Полупрозрачный белый фон */
+	background-color: rgba(255, 255, 255, 0.05); 
 	backdrop-filter: blur(10px);
+	color: rgb(175, 16, 101);
 }
 @keyframes neon {
 	0% {

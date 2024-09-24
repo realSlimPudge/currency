@@ -46,7 +46,7 @@ export default function Convert() {
 	}, [])
 
 	async function getCurrency() {
-		if (firstCur != null && secondCur != null && firstValue != null) {
+		if (firstCur && secondCur && firstValue) {
 			const url = `https://currency-conversion-and-exchange-rates.p.rapidapi.com/convert?from=${firstCur.value}&to=${secondCur.value}&amount=${firstValue}`
 			const options = {
 				method: 'GET',
@@ -82,6 +82,7 @@ export default function Convert() {
 			: []
 	}, [list.symbols])
 
+
 	const customStyles = {
 		control: (provided, state) => ({
 			...provided,
@@ -89,7 +90,7 @@ export default function Convert() {
 			borderTop: 'none',
 			borderLeft: 'none',
 			borderRight: 'none',
-			borderRadius: '1px',
+			borderRadius: '5px',
 			boxShadow: state.isFocused
 				? '0px 0px 5px 2px rgba(253, 2, 136, 0.5)'
 				: 'none',
@@ -100,29 +101,46 @@ export default function Convert() {
 		option: (provided, state) => ({
 			...provided,
 			backgroundColor: state.isSelected
-				? 'rgba(253, 2, 136, 0.9)'
+				? 'rgba(253, 2, 136, 1)'
 				: state.isFocused
-				? 'rgba(253, 2, 136, 0.5)'
+				? 'rgb(175, 16, 101)'
 				: 'black',
-			color: state.isSelected ? 'black' : 'white',
+			color: 'white',
+			fontWeight: state.isSelected ? '600' : '300',
+			borderRadius:'15px',
+			marginBottom:'15px',
+			cursor:'pointer',
+			transition:'300ms ease-out all'
 		}),
 		menuList: provided => ({
 			...provided,
-			maxHeight: '200px',
+			maxHeight: '300px',
 			overflowY: 'auto',
-			paddingTop: '0',
-			paddingBot: '0',
+			paddingTop: '5px',
+			paddingBot: '5px',
+			paddingRight:'10px',
+			paddingLeft:'10px',
 
 			'&::-webkit-scrollbar': {
 				width: '8px',
 			},
 			'&::-webkit-scrollbar-track': {
 				background: 'black',
+				borderRadius: '5px',
 			},
 			'&::-webkit-scrollbar-thumb': {
 				background: 'rgba(253, 2, 136, 0.9)',
 				borderRadius: '5px',
 			},
+		}),
+		menu: provided =>({
+			...provided,
+			paddingRight:'10px',
+			background:"transparent",
+			backgroundColor:'rgba(255, 255, 255, 0.05)',
+			backdropFilter:'blur(10px)',
+			borderRadius:'15px',
+			boxShadow:'none',
 		}),
 		singleValue: (provided, state) => ({
 			...provided,
@@ -135,7 +153,7 @@ export default function Convert() {
 			<div className='convert-window'>
 				<div className='first'>
 					<Select
-						className='convert--select custom-scrollbar'
+						className='convert--select'
 						onChange={changeFirstCur}
 						value={firstCur}
 						options={options}
@@ -145,7 +163,7 @@ export default function Convert() {
 					<input
 						type='number'
 						className='convert--input'
-						onChange={changeFirstValue}
+						onChange={changeFirstValue	}
 					/>
 				</div>
 				<div className='second'>

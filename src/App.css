@@ -7,6 +7,9 @@ body {
 	font-family: 'Montserrat';
 	color: white;
 }
+::selection {
+	background: rgba(253, 2, 136, 0.5);
+}
 header {
 	display: flex;
 	align-items: center;
@@ -28,6 +31,7 @@ header {
 	column-gap: 40px;
 	display: flex;
 	width: fit-content;
+	position: relative;
 }
 .example-link {
 	width: 20%;
@@ -35,6 +39,15 @@ header {
 }
 .logo {
 	width: 20%;
+}
+
+.indicator {
+	position: absolute;
+	bottom: -25%;
+	height: 1px;
+	background-color: rgba(253, 2, 136, 1);
+	transition: left 0.4s ease-in-out, width 0.3s ease-in-out;
+	box-shadow: 0px 0px 6px 1px rgba(253, 2, 136, 0.8);
 }
 
 .example-link a {
@@ -86,7 +99,7 @@ main {
 	border: 2px solid rgba(253, 2, 136, 0.5);
 	animation: neon 3s infinite ease-in-out;
 	border-radius: 15px;
-	background-color: rgba(255, 255, 255, 0.05); 
+	background-color: rgba(255, 255, 255, 0.05);
 	backdrop-filter: blur(10px);
 	color: rgb(175, 16, 101);
 }
@@ -121,11 +134,12 @@ main {
 }
 .convert--input {
 	width: 500px;
+	height: 200px;
 	padding: 20px 15px;
 	border: none;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 	outline: none;
-	border-radius: 15px;
-	font-size: 124px;
+	font-size: 82px;
 	font-family: 'montserrat';
 	font-weight: 300;
 	background: transparent;
@@ -147,7 +161,6 @@ main {
 }
 .btnDiv button {
 	font-size: 42px;
-	transition: border 300ms ease-in-out;
 	border: 2px solid rgba(253, 2, 136, 0.5);
 	padding: 15px 25px;
 	border-radius: 15px;
@@ -157,10 +170,28 @@ main {
 	color: white;
 	font-weight: 400;
 	transition: 300ms ease-in-out all;
+	position: relative;
+	overflow: hidden;
+	z-index: 2;
+}
+.btnDiv button::after {
+	content: '';
+	position: absolute;
+	width: 1px;
+	height: 200%;
+	transform: rotate(45deg);
+	top: -50%;
+	left: -30%;
+	box-shadow: 0px 0px 10px 8px rgba(255, 255, 255, 0.5),
+		inset 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
+	transition: all 300ms ease-in-out;
 }
 .btnDiv button:hover {
 	box-shadow: 0px 0px 5px 2px rgba(253, 2, 136, 0.5);
 	scale: 1.02;
+}
+.btnDiv button:hover::after {
+	left: 130%;
 }
 .errAnimation {
 	animation: shake 200ms ease-in-out;

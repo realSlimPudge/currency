@@ -1,14 +1,15 @@
-import React from 'react'
-import { useState, useEffect, useMemo } from 'react'
+import { React, useState, useEffect, useMemo } from 'react'
 import Select from 'react-select'
 
 export default function Convert() {
 	const [list, setList] = useState({})
 	const [firstCur, setFirstCur] = useState(null)
 	const [secondCur, setSecondCur] = useState(null)
-	const [firstValue, setFirstValue] = useState(null)
-	const [convert, setConvert] = useState(0)
+	const [firstValue, setFirstValue] = useState('')
+	const [convert, setConvert] = useState('')
 	const [errBtn, setErrBtn] = useState(false)
+	const [fontSize, setFontSize] = useState(82)
+	const [fontSizeSecond, setFontSizeSecond] = useState(82)
 
 	const changeFirstCur = e => {
 		setFirstCur(e)
@@ -19,6 +20,29 @@ export default function Convert() {
 	const changeFirstValue = e => {
 		setFirstValue(e.target.value)
 	}
+	const selectText = e => {
+		e.target.select()
+	}
+
+	useEffect(() => {
+		if (convert.length > 6 && convert.length < 10) {
+			setFontSizeSecond(82)
+		} else if (convert.length >= 10) {
+			setFontSizeSecond(64)
+		} else {
+			setFontSizeSecond(128)
+		}
+	}, [convert])
+
+	useEffect(() => {
+		if (firstValue.length > 6 && firstValue.length < 10) {
+			setFontSize(82)
+		} else if (firstValue.length >= 10) {
+			setFontSize(64)
+		} else {
+			setFontSize(128)
+		}
+	}, [firstValue])
 
 	useEffect(() => {
 		async function fetchData() {
@@ -82,21 +106,17 @@ export default function Convert() {
 			: []
 	}, [list.symbols])
 
-
 	const customStyles = {
 		control: (provided, state) => ({
 			...provided,
 			backgroundColor: '#transparent',
-			borderTop: 'none',
-			borderLeft: 'none',
-			borderRight: 'none',
-			borderRadius: '5px',
+			border: 'none',
+			padding: '10px',
+			borderRadius: '10px',
+			transition: 'all 300ms ease',
 			boxShadow: state.isFocused
 				? '0px 0px 5px 2px rgba(253, 2, 136, 0.5)'
-				: 'none',
-			'&:hover': {
-				borderColor: 'rgba(253, 2, 136, 0.5)',
-			},
+				: '0px 0px 1px 0px rgba(255, 255, 255, 0.9)',
 		}),
 		option: (provided, state) => ({
 			...provided,
@@ -107,10 +127,15 @@ export default function Convert() {
 				: 'black',
 			color: 'white',
 			fontWeight: state.isSelected ? '600' : '300',
-			borderRadius:'15px',
-			marginBottom:'15px',
-			cursor:'pointer',
-			transition:'300ms ease-out all'
+			borderRadius: '15px',
+			marginBottom: '15px',
+			cursor: 'pointer',
+			transition: '300ms ease-out all',
+		}),
+		input: (provided, state) => ({
+			...provided,
+			color: 'white',
+			fontWeight: '300',
 		}),
 		menuList: provided => ({
 			...provided,
@@ -118,8 +143,8 @@ export default function Convert() {
 			overflowY: 'auto',
 			paddingTop: '5px',
 			paddingBot: '5px',
-			paddingRight:'10px',
-			paddingLeft:'10px',
+			paddingRight: '10px',
+			paddingLeft: '10px',
 
 			'&::-webkit-scrollbar': {
 				width: '8px',
@@ -133,19 +158,24 @@ export default function Convert() {
 				borderRadius: '5px',
 			},
 		}),
-		menu: provided =>({
+		menu: provided => ({
 			...provided,
-			paddingRight:'10px',
-			background:"transparent",
-			backgroundColor:'rgba(255, 255, 255, 0.05)',
-			backdropFilter:'blur(10px)',
-			borderRadius:'15px',
-			boxShadow:'none',
+			paddingRight: '10px',
+			background: 'transparent',
+			backgroundColor: 'rgba(255, 255, 255, 0.05)',
+			backdropFilter: 'blur(10px)',
+			borderRadius: '15px',
+			boxShadow: 'none',
 		}),
 		singleValue: (provided, state) => ({
 			...provided,
 			color: 'white',
+			fontWeight: '500',
 		}),
+	}
+
+	const handleInputChange = inputValue => {
+		return inputValue.toUpperCase()
 	}
 
 	return (
@@ -159,11 +189,16 @@ export default function Convert() {
 						options={options}
 						placeholder='Выберите валюту'
 						styles={customStyles}
+						onInputChange={handleInputChange}
 					/>
+
 					<input
+						defaultValue={0}
 						type='number'
 						className='convert--input'
-						onChange={changeFirstValue	}
+						onChange={changeFirstValue}
+						onClick={selectText}
+						style={{ fontSize: `${fontSize}px` }}
 					/>
 				</div>
 				<div className='second'>
@@ -174,12 +209,15 @@ export default function Convert() {
 						options={options}
 						placeholder='Выберите валюту'
 						styles={customStyles}
+						onInputChange={handleInputChange}
 					/>
+
 					<input
 						type='number'
 						className='convert--input'
 						readOnly
 						value={convert}
+						style={{ fontSize: `${fontSizeSecond}px` }}
 					/>
 				</div>
 			</div>

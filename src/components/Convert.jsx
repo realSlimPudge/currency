@@ -6,7 +6,7 @@ export default function Convert() {
 	const [firstCur, setFirstCur] = useState(null)
 	const [secondCur, setSecondCur] = useState(null)
 	const [firstValue, setFirstValue] = useState('')
-	const [convert, setConvert] = useState('')
+	const [convert, setConvert] = useState(0)
 	const [errBtn, setErrBtn] = useState(false)
 	const [fontSize, setFontSize] = useState(82)
 	const [fontSizeSecond, setFontSizeSecond] = useState(82)
@@ -25,9 +25,11 @@ export default function Convert() {
 	}
 
 	useEffect(() => {
-		if (convert.length > 6 && convert.length < 10) {
+		const convertStr = convert.toString()
+		if (convertStr.length > 6 && convertStr.length < 10) {
 			setFontSizeSecond(82)
-		} else if (convert.length >= 10) {
+			console.log(convertStr.length)
+		} else if (convertStr.length >= 10) {
 			setFontSizeSecond(64)
 		} else {
 			setFontSizeSecond(128)

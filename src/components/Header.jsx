@@ -6,26 +6,31 @@ export default function Header() {
 	const navRef = useRef(null)
 	const location = useLocation()
 
-	useEffect(() => {
-		const updateInd = () => {
-			if (navRef.current) {
-				const activeLink = navRef.current.querySelector(
-					`[href="${location.pathname}"]`
-				)
-				if (activeLink) {
-					const linkRect = activeLink.getBoundingClientRect()
-					const navRect = navRef.current.getBoundingClientRect()
-					setIndicator({
-						left: linkRect.left - navRect.left,
-						width: linkRect.width,
-					})
-				}
+	const updateInd = () => {
+		if (navRef.current) {
+			const activeLink = navRef.current.querySelector(
+				`[href="${location.pathname}"]`
+			)
+			if (activeLink) {
+				const linkRect = activeLink.getBoundingClientRect()
+				const navRect = navRef.current.getBoundingClientRect()
+				setIndicator({
+					left: linkRect.left - navRect.left,
+					width: linkRect.width,
+				})
 			}
 		}
+	}
+
+	useEffect(() => {
 		updateInd()
 		window.addEventListener('resize', updateInd)
 		return () => window.removeEventListener('resize', updateInd)
 	}, [location])
+
+	useEffect(() => {
+		updateInd()
+	}, [])
 
 	return (
 		<header>
